@@ -1,11 +1,11 @@
-# VERSION 2.1.2
+# VERSION 2.2.1
 # AUTHOR: wuuker
 # DESCRIPTION: Basic Airflow container
 # BUILD: docker build --rm -t wuuker/docker-airflow .
 # ORIGINAL SOURCE: https://github.com/puckel/docker-airflow
 # SOURCE: https://github.com/ukewea/docker-airflow
 
-FROM python:3.8-slim-buster
+FROM python:3.9-slim-bullseye
 LABEL original_maintainer="Puckel_"
 LABEL maintainer="wuuker"
 
@@ -14,7 +14,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 
 # Airflow
-ARG AIRFLOW_VERSION=2.1.2
+ARG AIRFLOW_VERSION=2.2.1
 ARG AIRFLOW_USER_HOME=/usr/local/airflow
 ARG AIRFLOW_DEPS=""
 ARG PYTHON_DEPS=""
@@ -39,7 +39,8 @@ RUN set -ex \
         libffi-dev \
         libpq-dev \
         git \
-
+        rustc \
+        cargo \
     ' \
     && apt-get update -yqq \
     && apt-get upgrade -yqq \
